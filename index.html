@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="TranscribeAI — сервис транскрибации аудио и видео">
+  <title>TranscribeAI</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="header" id="header">
+    <a class="logo" href="#home" data-route="home" aria-label="TranscribeAI">TranscribeAI</a>
+
+    <nav class="nav" aria-label="Основная навигация">
+      <a href="#home" data-route="home" class="nav__link active">Главная</a>
+      <a href="#processing" data-route="processing" class="nav__link">Обработка</a>
+      <a href="#history" data-route="history" class="nav__link">История</a>
+      <a href="#balance" data-route="balance" class="nav__link">Баланс</a>
+      <a href="#profile" data-route="profile" class="nav__link">Профиль</a>
+    </nav>
+
+    <div class="header__actions">
+      <button class="icon-btn" id="themeToggle" aria-label="Сменить тему">
+        <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4V2M12 22v-2M4.93 4.93 3.52 3.52M20.48 20.48l-1.41-1.41M4 12H2M22 12h-2M4.93 19.07l-1.41 1.41M20.48 3.52l-1.41 1.41M12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10Z"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 14.8A8.6 8.6 0 0 1 9.2 3 8.8 8.8 0 1 0 21 14.8Z"/></svg>
+      </button>
+      <button class="user-chip" data-route="profile">
+        <span>ИП</span>
+        <strong>Иван Петров</strong>
+      </button>
+      <button class="burger" id="burger" aria-label="Открыть меню">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <aside class="mobile-menu" id="mobileMenu">
+    <a href="#home" data-route="home">Главная</a>
+    <a href="#processing" data-route="processing">Обработка</a>
+    <a href="#history" data-route="history">История</a>
+    <a href="#balance" data-route="balance">Баланс</a>
+    <a href="#profile" data-route="profile">Профиль</a>
+  </aside>
+
+  <main class="app">
+    <section class="page active" id="home">
+      <div class="hero">
+        <div class="hero__content">
+          <span class="eyebrow">B2B сервис транскрибации</span>
+          <h1>Преобразуем аудио и видео в текст, выжимку и задачи</h1>
+          <p>Загрузите файл, получите расчет стоимости, подтвердите списание и скачайте полную транскрибацию или аналитическую выжимку.</p>
+          <div class="hero__actions">
+            <button class="btn btn--primary" data-route="processing">Начать транскрибацию</button>
+            <button class="btn btn--ghost" data-route="history">Посмотреть историю</button>
+          </div>
+        </div>
+
+        <form class="upload-card" id="uploadForm">
+          <div class="upload-card__icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V4M7 9l5-5 5 5M20 16.5V19a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-2.5"/></svg>
+          </div>
+          <h2>Загрузите файл</h2>
+          <p>Аудио или видео до 5 ГБ</p>
+          <label class="file-field">
+            <input type="file" id="fileInput" accept="audio/*,video/*">
+            <span id="fileFieldText">Выбрать файл</span>
+          </label>
+          <div class="file-state" id="fileState" hidden>
+            <span class="file-state__icon">✓</span>
+            <div>
+              <strong id="fileName">Файл выбран</strong>
+              <p id="fileSize">Готов к расчету стоимости</p>
+            </div>
+          </div>
+          <input class="input" id="linkInput" type="url" placeholder="Или вставьте ссылку на файл">
+          <select class="input" id="summaryType">
+            <option value="Краткое содержание">Краткое содержание</option>
+            <option value="Управленческая выжимка">Управленческая выжимка</option>
+            <option value="Задачи специалистам">Задачи специалистам</option>
+          </select>
+          <textarea class="input" id="instructionInput" placeholder="Инструкция к выжимке"></textarea>
+          <button class="btn btn--primary btn--wide" type="submit">Рассчитать стоимость</button>
+          <small id="uploadError"></small>
+        </form>
+      </div>
+
+      <div class="stats-grid">
+        <article class="stat-card blue"><span>Баланс</span><strong>1 250,50 ₽</strong><button data-route="balance">Пополнить</button></article>
+        <article class="stat-card"><span>Обработано</span><strong>12 ч 35 м</strong></article>
+        <article class="stat-card"><span>В очереди</span><strong>3 файла</strong></article>
+        <article class="stat-card"><span>Точность</span><strong>96%</strong></article>
+      </div>
+
+      <div class="features">
+        <article><h3>Полная транскрибация</h3><p>Текст с разделением по голосам и метаданными файла.</p></article>
+        <article><h3>Аналитическая выжимка</h3><p>Краткий итог, управленческий формат или список задач.</p></article>
+        <article><h3>Экспорт документов</h3><p>Скачивание результатов в PDF, DOCX или текстовом формате.</p></article>
+      </div>
+    </section>
+
+    <section class="page" id="processing">
+      <div class="section-head"><span>Рабочая зона</span><h2>Очередь и прогресс обработки</h2></div>
+      <div class="queue" id="queueList"></div>
+    </section>
+
+    <section class="page" id="history">
+      <div class="section-head"><span>Архив</span><h2>История транскрибаций</h2></div>
+      <div class="toolbar">
+        <input class="input" id="searchInput" type="search" placeholder="Поиск по названию">
+        <select class="input" id="filterInput">
+          <option value="all">Все типы</option>
+          <option value="audio">Аудио</option>
+          <option value="video">Видео</option>
+        </select>
+      </div>
+      <div class="history-list" id="historyList"></div>
+    </section>
+
+    <section class="page" id="balance">
+      <div class="section-head"><span>Оплата</span><h2>Баланс и пополнение</h2></div>
+      <div class="balance-layout">
+        <article class="balance-card"><span>Текущий баланс</span><strong>1 250,50 ₽</strong><p>Списание происходит после подтверждения стоимости обработки.</p></article>
+        <form class="panel" id="balanceForm">
+          <h3>Пополнить баланс</h3>
+          <div class="amounts">
+            <button type="button" data-amount="500">500 ₽</button>
+            <button type="button" data-amount="1000">1 000 ₽</button>
+            <button type="button" data-amount="3000">3 000 ₽</button>
+          </div>
+          <input class="input" id="amountInput" type="number" min="100" placeholder="Введите сумму">
+          <button class="btn btn--primary btn--wide">Оплатить</button>
+          <small id="balanceMessage"></small>
+        </form>
+      </div>
+    </section>
+
+    <section class="page" id="profile">
+      <div class="section-head"><span>Личный кабинет</span><h2>Профиль и настройки</h2></div>
+      <div class="profile-grid">
+        <form class="panel" id="profileForm">
+          <h3>Данные пользователя</h3>
+          <input class="input" type="text" placeholder="Имя" value="Иван Петров" required>
+          <input class="input" type="email" placeholder="Email" value="ivan.petrov@company.ru" required>
+          <select class="input">
+            <option>PDF</option><option>DOCX</option><option>TXT</option>
+          </select>
+          <button class="btn btn--primary btn--wide">Сохранить</button>
+        </form>
+        <div class="panel">
+          <h3>Уведомления</h3>
+          <label class="switch"><span>Email</span><input type="checkbox" checked></label>
+          <label class="switch"><span>SMS</span><input type="checkbox"></label>
+          <label class="switch"><span>Telegram</span><input type="checkbox" checked></label>
+          <label class="switch"><span>Push</span><input type="checkbox" checked></label>
+        </div>
+        <div class="panel">
+          <h3>Партнерская программа</h3>
+          <p>Ваша ссылка: <b>transcribe.ai/ref/ivan</b></p>
+          <p>Бонус: <b>30%</b> с пополнений приглашенных пользователей.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal" id="costModal" aria-hidden="true">
+    <div class="modal__box">
+      <button class="modal__close" id="modalClose" aria-label="Закрыть">×</button>
+      <span class="eyebrow">Расчет стоимости</span>
+      <h2 id="costTitle">Файл готов к обработке</h2>
+      <div class="cost-list">
+        <p><span>Тип</span><b id="costType">Аудио</b></p>
+        <p><span>Длительность</span><b>18 мин</b></p>
+        <p><span>Стоимость</span><b id="costPrice">126 ₽</b></p>
+        <p><span>Остаток</span><b>1 124,50 ₽</b></p>
+      </div>
+      <button class="btn btn--primary btn--wide" id="confirmCost">Подтвердить списание</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
